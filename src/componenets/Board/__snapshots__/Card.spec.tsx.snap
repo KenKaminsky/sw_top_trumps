@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card Snapshot Test should render as expected 1`] = `
+<div
+  className="sc-gsTCUz fSqflo"
+>
+  <div>
+    <img
+      alt="img"
+      src=""
+    />
+  </div>
+  <div
+    className="sc-bdfBwQ dODQao"
+  >
+    <h2>
+      Name!
+    </h2>
+    <h5>
+      Model
+    </h5>
+  </div>
+  <div>
+    <h5>
+      Length
+    </h5>
+    <h5>
+      Cargo Capacity
+    </h5>
+    <h5>
+      maxAtmospheringSpeed
+    </h5>
+    <h5>
+      hyperdriveRating
+    </h5>
+  </div>
+</div>
+`;

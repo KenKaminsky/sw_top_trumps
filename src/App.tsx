@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ApolloProvider } from '@apollo/client';
+import React, { useState } from 'react';
+import { createGlobalStyle } from 'styled-components';
+import { client } from './apollo_client/client';
+import Layout from './shared/Layout';
 
-function App() {
+const GlobalStyles = createGlobalStyle`
+ html {
+   box-sizing: border-box;
+}
+
+ *,
+ *::before,
+ *::after {
+   box-sizing: inherit;
+}
+`;
+
+interface IHistory {
+  id: string;
+  suit: 'starships' | 'people';
+  winner: number;
+  date: Date;
+}
+interface IHistoryContext {
+  history: IHistory[];
+  setHistory: React.Dispatch<React.SetStateAction<IHistory[]>>;
+}
+
+export const HistoryContext = React.createContext<IHistoryContext>({
+  history: [],
+  setHistory: () => void 0,
+});
+
+const App: React.FC = () => {
+  const [history, setHistory] = useState<IHistory[]>([]);
+  const value = { history, setHistory };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <ApolloProvider client={client}>
+        <HistoryContext.Provider value={value}>
+          <Layout />
+        </HistoryContext.Provider>
+      </ApolloProvider>
     </div>
   );
-}
+};
 
 export default App;
