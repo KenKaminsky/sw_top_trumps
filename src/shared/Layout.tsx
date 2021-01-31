@@ -1,12 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 import Boards from '../componenets/Board/Boards';
-import Navbar from './Navbar';
 import History from '../componenets/History/History';
+import Navbar from './Navbar';
+import { IStyledComponent } from './types';
 
-const Layout: React.FC = () => {
+const Layout: React.FC<IStyledComponent> = ({ className }) => {
   return (
-    <div>
+    <div className={className}>
       <Navbar />
       <Switch>
         <Route exact path='/' component={Boards} />
@@ -18,4 +20,6 @@ const Layout: React.FC = () => {
   );
 };
 
-export default Layout;
+const StyledLayout = styled(Layout)``;
+
+export default StyledLayout;

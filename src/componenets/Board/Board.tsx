@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 import Game from './Game';
 
-const STARSHIPS = gql`
+const GET_STARSHIPS = gql`
   query starships {
     allStarships(first: 36) {
       totalCount
@@ -19,7 +19,23 @@ const STARSHIPS = gql`
   }
 `;
 
-const PEOPLE = gql`
+const GET_RAND_STARSHIPS = gql`
+  query starships {
+    allStarships(first: 36) {
+      totalCount
+      starships {
+        id
+        name
+        model
+        length
+        cargoCapacity
+        hyperdriveRating
+      }
+    }
+  }
+`;
+
+const GET_PEOPLE = gql`
   query people {
     allPeople(first: 10) {
       totalCount
@@ -53,31 +69,33 @@ export interface IPerson {
 
 const SUITS = {
   starships: {
-    query: STARSHIPS,
+    query: GET_STARSHIPS,
     selector: (data) => data.allStarships.starships,
     compField: 'hyperdriveRating',
   },
   people: {
-    query: PEOPLE,
+    query: GET_PEOPLE,
     selector: (data) => data.allPeople.people,
     compField: 'height',
   },
 };
 
-const ERROR = 'Oooops! Something went wrong...';
-
 const Board: React.FC = () => {
   const { cardSuitId } = useParams<{ cardSuitId: string }>();
 
-  const [nPlayers] = useState(5);
   const { loading, data, error } = useQuery(SUITS[cardSuitId].query);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <h1>{ERROR}</h1>;
-
-  const allCards = SUITS[cardSuitId].selector(data);
-
-  return <Game allCards={allCards} nPlayers={nPlayers} compField={SUITS[cardSuitId].compField} />;
+  return (
+    <>
+      {loading ? (
+        <div>Loading...</div>
+      ) : error ? (
+        <h1>'Oooops! Something went wrong...'</h1>
+      ) : (
+        <Game allCards={SUITS[cardSuitId].selector(data)} compField={SUITS[cardSuitId].compField} />
+      )}
+    </>
+  );
 };
 
 export default Board;

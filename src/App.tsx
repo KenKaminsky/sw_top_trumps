@@ -1,25 +1,14 @@
 import { ApolloProvider } from '@apollo/client';
 import React, { useState } from 'react';
-import { createGlobalStyle } from 'styled-components';
 import { client } from './apollo_client/client';
+import { GlobalStyles } from './GlobalStyle';
 import Layout from './shared/Layout';
-
-const GlobalStyles = createGlobalStyle`
- html {
-   box-sizing: border-box;
-}
-
- *,
- *::before,
- *::after {
-   box-sizing: inherit;
-}
-`;
 
 interface IHistory {
   id: string;
-  suit: 'starships' | 'people';
+  compField: string;
   winner: number;
+  winningValue: number;
   date: Date;
 }
 interface IHistoryContext {
@@ -38,6 +27,7 @@ const App: React.FC = () => {
 
   return (
     <div className='App'>
+      <GlobalStyles />
       <ApolloProvider client={client}>
         <HistoryContext.Provider value={value}>
           <Layout />
