@@ -1,14 +1,14 @@
 import { ApolloProvider } from '@apollo/client';
 import React, { useState } from 'react';
 import { client } from './apollo_client/client';
+import { Winner } from './componenets/Board/Game';
 import { GlobalStyles } from './GlobalStyle';
 import Layout from './shared/Layout';
 
-interface IHistory {
+export interface IHistory {
   id: string;
   compField: string;
-  winner: number;
-  winningValue: number;
+  winner: Winner;
   date: Date;
 }
 interface IHistoryContext {

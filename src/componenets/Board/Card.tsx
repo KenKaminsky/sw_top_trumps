@@ -5,7 +5,7 @@ import colors from '../../styles/colors';
 import { IPerson, IStarship } from './Board';
 import StyledCardDetails from './CardDetails';
 import CardHeader from './CardHeader';
-import { STARSHIPS_SUIT } from './cardSuits';
+import { STARSHIPS_CARD_IMGS } from './constants';
 
 export type ICard = IStarship | IPerson;
 interface CardProps {
@@ -15,7 +15,7 @@ interface CardProps {
 const Card: React.FC<CardProps & IStyledComponent> = ({ className, data }) => {
   return (
     <div className={className}>
-      <CardHeader title={data.name} imgUrl={STARSHIPS_SUIT['c3RhcnNoaXBzOjI=']} />
+      <CardHeader title={data.name} imgUrl={STARSHIPS_CARD_IMGS['c3RhcnNoaXBzOjI=']} />
       <StyledCardDetails data={data} />
     </div>
   );
@@ -23,10 +23,11 @@ const Card: React.FC<CardProps & IStyledComponent> = ({ className, data }) => {
 
 export const StyledCard = styled(Card)`
   width: 225px;
-  margin: 10px;
+  margin: 15px;
   padding: 15px;
   border-radius: 10px;
-  background: ${colors.white};
+  color: white;
+  background: ${colors.black};
 `;
 
 export default StyledCard;

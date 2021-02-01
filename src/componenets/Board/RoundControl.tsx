@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Centered, Label } from '../../shared/styles';
 import { IStyledComponent } from '../../shared/types';
+import colors from '../../styles/colors';
 
 interface IRoundControlProps {
   round: number;
@@ -30,7 +31,10 @@ const RoundControl: React.FC<IRoundControlProps & IStyledComponent> = ({
 };
 
 export const Button = styled.button`
-  margin: 10px;
+  background: ${colors.blue};
+  color: white;
+  font-size: 1.5em;
+  border-radius: 10px;
   padding: 10px 15px;
 `;
 

@@ -67,7 +67,7 @@ export interface IPerson {
   height: Float32Array;
 }
 
-const SUITS = {
+export const SUITS = {
   starships: {
     query: GET_STARSHIPS,
     selector: (data) => data.allStarships.starships,
@@ -80,6 +80,9 @@ const SUITS = {
   },
 };
 
+export const LOADING_MESSAGE = 'Loading...';
+export const ERROR_MESSAGE = 'Oooops! Something went wrong...';
+
 const Board: React.FC = () => {
   const { cardSuitId } = useParams<{ cardSuitId: string }>();
 
@@ -88,9 +91,9 @@ const Board: React.FC = () => {
   return (
     <>
       {loading ? (
-        <div>Loading...</div>
+        <div>{LOADING_MESSAGE}</div>
       ) : error ? (
-        <h1>'Oooops! Something went wrong...'</h1>
+        <h1>{ERROR_MESSAGE}</h1>
       ) : (
         <Game allCards={SUITS[cardSuitId].selector(data)} compField={SUITS[cardSuitId].compField} />
       )}

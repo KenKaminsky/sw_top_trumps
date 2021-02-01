@@ -4,13 +4,13 @@ import { IStyledComponent } from '../../shared/types';
 import PlayersControl from './PlayersControl';
 import RoundControl from './RoundControl';
 import WinnerControl from './WinnerControl';
+import { Winner } from './Game';
 
 interface IGameControlsProps {
   players: number;
   round: number;
   maxPlayers: number;
-  winner: number;
-  winningValue: number;
+  winner: Winner;
   setRound: React.Dispatch<React.SetStateAction<number>>;
   setPlayers: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -20,7 +20,6 @@ const GameControls: React.FC<IGameControlsProps & IStyledComponent> = ({
   round,
   players,
   winner,
-  winningValue,
   maxPlayers,
   setRound,
   setPlayers,
@@ -28,7 +27,7 @@ const GameControls: React.FC<IGameControlsProps & IStyledComponent> = ({
   return (
     <div className={className}>
       <RoundControl round={round} setRound={setRound} />
-      <WinnerControl winner={winner} winningValue={winningValue} />
+      <WinnerControl winner={winner} />
       <PlayersControl players={players} maxPlayers={maxPlayers} setPlayers={setPlayers} />
     </div>
   );
@@ -36,7 +35,7 @@ const GameControls: React.FC<IGameControlsProps & IStyledComponent> = ({
 
 export const StyledGameControls = styled(GameControls)`
   height: 85px;
-  margin: 10px;
+  padding: 15px;
   display: flex;
   align-content: baseline;
   justify-content: space-between;

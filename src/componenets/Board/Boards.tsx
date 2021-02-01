@@ -1,31 +1,25 @@
 import React from 'react';
-import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import styled from 'styled-components';
+import { IStyledComponent } from '../../shared/types';
 import Board from './Board';
+import ChooseSuit from './ChooseSuit';
+import Sidenav from './Sidenav';
 
-const Boards: React.FC = () => {
+const Boards: React.FC<IStyledComponent> = ({ className }) => {
   const match = useRouteMatch();
 
   return (
-    <div style={{ display: 'flex' }}>
-      <div style={{ flexBasis: '150px' }}>
-        <h2>Boards</h2>
-        <ul>
-          <li>
-            <Link to={`/boards/starships`}>Starships</Link>
-          </li>
-          <li>
-            <Link to={`/boards/people`}>People</Link>
-          </li>
-        </ul>
-      </div>
+    <div className={className}>
+      <Sidenav />
 
-      <div style={{ flexGrow: 1 }}>
+      <div className={'container'}>
         <Switch>
           <Route path={`/boards/:cardSuitId`}>
             <Board />
           </Route>
           <Route path={match.path}>
-            <h3>Please select a Card Suit.</h3>
+            <ChooseSuit />
           </Route>
         </Switch>
       </div>
@@ -33,4 +27,15 @@ const Boards: React.FC = () => {
   );
 };
 
-export default Boards;
+const StyledBpards = styled(Boards)`
+  height: 100%;
+  display: flex;
+
+  .container {
+    flex-grow: 1;
+    width: 80%;
+    overflow: auto;
+  }
+`;
+
+export default StyledBpards;

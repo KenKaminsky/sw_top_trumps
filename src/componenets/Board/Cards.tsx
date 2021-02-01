@@ -20,7 +20,7 @@ const Cards: React.FC<ICardsProps & IStyledComponent> = ({ className, hands }) =
 export const StyledCards = styled(Cards)`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
 `;
 
 export default StyledCards;

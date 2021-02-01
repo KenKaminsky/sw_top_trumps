@@ -46,7 +46,7 @@ describe('Game Logic', () => {
     });
   });
 
-  describe.only('splitEqually', () => {
+  describe('splitEqually', () => {
     it.each(times(3).map(() => randInRange(2, arr.length)))(
       'should split the array to an equaly sized of chunks for n < array.length',
       (n) => {

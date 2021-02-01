@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { HistoryContext } from '../../App';
+import { HistoryContext, IHistory } from '../../App';
 import { ICard } from './Card';
 import Cards from './Cards';
 import GameControls from './GameControls';
@@ -10,84 +10,62 @@ interface IGameProps {
   compField: string;
 }
 
-const useDealer = (allCards: ICard[]) => {
-  const [maxPlayers, setMaxPlayers] = useState(allCards.length);
-  const [players, setPlayers] = useState(2);
-  const [round, setRound] = useState(0);
-  const [dealing, setDealing] = useState(true);
-  const [hands, setHands] = useState<ICard[]>([]);
-
-  console.log('render dealer hook');
-  useEffect(() => {
-    console.log('effect dealer hook');
-    setDealing(true);
-    setMaxPlayers(allCards.length);
-    const cards = allCards.slice();
-    setHands(
-      Array(players)
-        .fill(0)
-        .flatMap(() => {
-          const ranIndex = Math.floor(Math.random() * (cards.length - 1));
-          return cards.splice(ranIndex, 1);
-        }),
-    );
-    setDealing(false);
-  }, [allCards, players, round]);
-
-  return [dealing, maxPlayers, players, setPlayers, hands, round, setRound] as const;
+const deal = (cards: ICard[], players: number): ICard[] => {
+  return Array(players)
+    .fill(0)
+    .flatMap(() => {
+      const ranIndex = Math.floor(Math.random() * (cards.length - 1));
+      return cards.splice(ranIndex, 1);
+    });
 };
 
-interface IRoundProps {
-  hands: ICard[];
-  compField: string;
+const checkWinner = (hands: ICard[], compField: string): Winner => {
+  const currFieldValues = hands.map((card) => parseFloat(card[compField]) || 0);
+  const value = Math.max(...currFieldValues);
+  const index = currFieldValues.findIndex((cval) => cval === value);
+  return { index, value };
+};
+
+export interface Winner {
+  index: number;
+  value: number;
 }
 
-const useGameLogic = ({ hands, compField }: IRoundProps) => {
-  const [winningValue, setWinningValue] = useState<number>();
-  const [winner, setWinner] = useState<number>();
-
-  useEffect(() => {
-    console.log('effect Round');
-
-    const currFieldValues = hands.map((card) => parseFloat(card[compField]) || 0);
-
-    const winningValue = Math.max(...currFieldValues);
-    const WinningPlayerIndex = currFieldValues.findIndex((val) => val === winningValue);
-
-    setWinningValue(winningValue);
-    setWinner(WinningPlayerIndex);
-  }, [hands]);
-
-  return [winner, winningValue];
-};
+export const DEALING_MESSAGE = 'Dealing...';
 
 export const Game: React.FC<IGameProps> = ({ allCards, compField }) => {
+  console.log('render GAME');
+
   const { setHistory } = useContext(HistoryContext);
 
-  const [dealing, maxPlayers, players, setPlayers, hands, round, setRound] = useDealer(allCards);
-  const [winner, winningValue] = useGameLogic({ hands, compField });
+  const [round, setRound] = useState(0);
+  const [players, setPlayers] = useState(2);
+  const [winner, setWinner] = useState<Winner>();
+  const [hands, setHands] = useState<ICard[]>([]);
 
   useEffect(() => {
-    console.log('winner ', winner);
-    setHistory((history) => [
-      ...history,
-      { id: uuidv4(), winner, winningValue, date: new Date(), compField },
-    ]);
-  }, [setHistory, winner, winningValue]);
+    console.log('effect GAME');
 
-  console.log('render Game');
+    const nhands = deal(allCards.slice(), players);
+    const winner = checkWinner(hands, compField);
+
+    setHands(nhands);
+    setWinner(winner);
+
+    setHistory((history) => [...history, { id: uuidv4(), date: new Date(), winner, compField }]);
+  }, [allCards, players, round]);
+
   return (
     <div>
       <GameControls
         winner={winner}
-        winningValue={winningValue}
         round={round}
         players={players}
-        maxPlayers={maxPlayers}
+        maxPlayers={allCards.length}
         setRound={setRound}
         setPlayers={setPlayers}
       />
-      {dealing ? <div>Dealing...</div> : <Cards hands={hands} />}
+      {hands.length === 0 ? <div>Dealing...</div> : <Cards hands={hands} />}
     </div>
   );
 };

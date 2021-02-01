@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { camelCaseToSentenceCase } from '../../shared/helpers';
 import { IStyledComponent } from '../../shared/types';
 import { ICard } from './Card';
 import DetailsRow from './DetailsRow';
@@ -16,7 +17,7 @@ const CardDetails: React.FC<ICardDetailsProps & IStyledComponent> = ({ className
       {Object.keys(data)
         .filter((key) => !IDENTITY_FIELDS.includes(key))
         .map((key) => (
-          <DetailsRow key={key} fieldName={key} fieldValue={data[key]} />
+          <DetailsRow key={key} label={camelCaseToSentenceCase(key)} value={data[key]} />
         ))}
     </div>
   );
