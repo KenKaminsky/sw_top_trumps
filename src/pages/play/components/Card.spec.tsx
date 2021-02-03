@@ -4,7 +4,7 @@ import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { CARD_SUIT_META } from '../game/constants';
 import { entityFactories } from '../../../test_utils/facroties';
-import { camelCaseToSentenceCase } from '../game/helpers';
+import { camelCaseToSentenceCase } from '../../../styles/helpers';
 import Card, { IDENTITY_FIELDS } from './Card';
 
 describe('<Card />', () => {

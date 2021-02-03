@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Entity } from '../../../apollo_client/types';
 import { RouterParams } from '../types';
-import { camelCaseToSentenceCase } from '../game/helpers';
+import { camelCaseToSentenceCase } from '../../../styles/helpers';
 import { CardBody, CardBodyRow, CardContainer, CardHeader, Label, Span } from '../styles';
 
 export const IDENTITY_FIELDS = ['__typename', 'id', 'name'];

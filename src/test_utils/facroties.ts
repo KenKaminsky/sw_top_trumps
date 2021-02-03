@@ -19,9 +19,6 @@ export const peopleFactory = Factory.Sync.makeFactory<Person>({
   birthYear: Factory.each(() => faker.random.word()),
   mass: Factory.each(() => faker.random.float()),
   height: Factory.each(() => faker.random.float()),
-  // homeworld: Factory.each(() => ({
-  //   name: Factory.each(() => faker.random.word()),
-  // })),
 });
 
 export const entityFactories = {

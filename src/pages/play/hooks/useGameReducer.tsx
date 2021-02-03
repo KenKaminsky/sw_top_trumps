@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Entity } from '../../../apollo_client/types';
 import { checkWinner, deal } from '../game';
 import { IHistory } from '../../../App';
-import { camelCaseToSentenceCase } from '../game/helpers';
+import { camelCaseToSentenceCase } from '../../../styles/helpers';
 
 export type State = {
   hands: Entity[];

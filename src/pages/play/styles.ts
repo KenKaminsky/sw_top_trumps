@@ -7,12 +7,6 @@ export const SuitButton = styled(Container)<{ url: string }>`
   font-size: 6rem;
 `;
 
-export const GameGrid = styled.div`
-  padding: 1rem;
-  display: grid;
-  grid-template-columns: repeat('auto-fit', 1fr);
-`;
-
 export const Board = styled(Container)`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
