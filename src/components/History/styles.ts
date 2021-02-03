@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Main } from '../../shared/styles';
-import { Container, VariantContainer } from '../../styles/styles';
-import { IVariant } from '../../styles/styles';
+import { VariantContainer } from '../../styles/styles';
 
 export const TableContainer = styled(Main)`
   display: grid;

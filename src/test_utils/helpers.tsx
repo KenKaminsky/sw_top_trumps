@@ -10,11 +10,12 @@ import { peopleFactory, starshipFactory } from './facroties';
 
 export const leftClick = { button: 0 };
 
-export const doTime = (times: number, action: (params?: any) => any) => {
+export type IDoTimes = (times: number, action: () => void) => void;
+
+export const doTimes: IDoTimes = (times, action) =>
   Array(times)
     .fill(0)
-    .forEach((_) => action());
-};
+    .map((_) => action());
 
 export const renderWithMocks = <Element,>(mocks, children) =>
   render(

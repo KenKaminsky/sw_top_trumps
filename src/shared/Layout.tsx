@@ -1,6 +1,5 @@
 import React from 'react';
-import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
-import styled from 'styled-components';
+import { NavLink, Route, Switch } from 'react-router-dom';
 import History from '../components/History';
 import Play from '../components/Play';
 import { Container } from '../styles/styles';

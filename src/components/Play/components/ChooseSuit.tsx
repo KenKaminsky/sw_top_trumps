@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { CARD_SUIT_META } from '../../../shared/types';
 import { Header, Main } from '../../../shared/styles';
-import { Container } from '../../../styles/styles';
+import { CARD_SUIT_META } from '../../../shared/types';
 import { SuitButton } from '../styles';
 
 export const ChooseSuitGrid = styled.div`

@@ -5,7 +5,7 @@ import { GraphQLError } from 'graphql';
 import * as React from 'react';
 import { SW_QUERIES } from '../../apollo_client/queries';
 import { CARD_SUIT_META } from '../../shared/types';
-import { doTime, mockResponse, renderWithMocks } from '../../test_utils/helpers';
+import { doTimes, mockResponse, renderWithMocks } from '../../test_utils/helpers';
 import { ERROR_MESSAGE, LOADING_MESSAGE } from './components/Game';
 import Play from './Play';
 
@@ -87,7 +87,7 @@ describe.each(Object.entries(CARD_SUIT_META).map(([key, { label }]) => [key, lab
 
       userEvent.click(screen.getByText(label), { button: 0 });
       const remove = await screen.findByText(/Remove Player/i);
-      doTime(3, () => userEvent.click(remove, { button: 0 }));
+      doTimes(3, () => userEvent.click(remove, { button: 0 }));
       expect((await screen.findAllByTestId(/card-test-id/i)).length).toEqual(2);
     });
 
@@ -98,7 +98,7 @@ describe.each(Object.entries(CARD_SUIT_META).map(([key, { label }]) => [key, lab
       userEvent.click(screen.getByText(label), { button: 0 });
       const add = await screen.findByText(/Add Player/i);
       expect(add).toBeInTheDocument();
-      doTime(3, () => userEvent.click(add, { button: 0 }));
+      doTimes(3, () => userEvent.click(add, { button: 0 }));
       expect((await screen.findAllByTestId(/card-test-id/i)).length).toEqual(3);
     });
 

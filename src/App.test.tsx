@@ -43,7 +43,7 @@ describe('render app level routs as expected', () => {
     expect(screen.getAllByText('STAR WARS').length).toEqual(2);
   });
 
-  it.each(Object.entries(CARD_SUIT_META).map(([_key, { label, path }]) => [label, path]))(
+  it.each(Object.values(CARD_SUIT_META).map(({ label, path }) => [label, path]))(
     'should render board option for (%i) on navigation to Play',
     (label) => {
       userEvent.click(screen.getByText(/Play/i), leftClick);
