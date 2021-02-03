@@ -3,7 +3,7 @@ import { RowContainer } from '../../../shared/styles';
 import { Container } from '../../../styles/styles';
 import { Action, ADD_PLAYER, REMOVE_PLAYER, State } from '../hooks/useGameReducer';
 import { ControlsContainer, Label, Span } from '../styles';
-import { IHistory } from './../../../App';
+import { IHistory } from '../../../App';
 
 interface ControlsProps {
   play: () => void;

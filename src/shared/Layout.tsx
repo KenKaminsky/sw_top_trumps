@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
-import History from '../components/History';
-import Play from '../components/Play';
 import { Container } from '../styles/styles';
-import Home from './Home';
+import Home from '../pages/home';
 import PageNotFound from './PageNotFound';
 import { Header, LayoutGrid, RowContainer } from './styles';
+import Play from '../pages/play';
+import History from '../pages/history';
 
 interface LayoutProps {
   toggleTheme: () => void;
@@ -26,7 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ toggleTheme }) => {
             History
           </Container>
           <Container as={'button'} onClick={() => toggleTheme()}>
-            Toggle Theme
+            Theme
           </Container>
         </RowContainer>
       </Header>

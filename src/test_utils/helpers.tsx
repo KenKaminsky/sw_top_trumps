@@ -4,7 +4,7 @@ import React from 'react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { SW_QUERIES } from '../apollo_client/queries';
-import { BASE_SUIT_PATH } from '../shared/types';
+import { BASE_SUIT_PATH } from '../pages/play/game/constants';
 import { defaultTheme } from '../styles/theme';
 import { peopleFactory, starshipFactory } from './facroties';
 

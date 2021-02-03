@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CARD_SUIT_META } from '../../shared/types';
+import { CARD_SUIT_META } from './game/constants';
 import { Container } from '../../styles/styles';
 
 export const SuitButton = styled(Container)<{ url: string }>`

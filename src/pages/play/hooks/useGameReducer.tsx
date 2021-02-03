@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Entity } from '../../../apollo_client/types';
-import { camelCaseToSentenceCase, checkWinner, deal } from '../../helpers';
+import { camelCaseToSentenceCase, checkWinner, deal } from '../game';
 import { IHistory } from '../../../App';
 
 export type State = {

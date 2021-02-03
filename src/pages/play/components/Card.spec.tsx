@@ -2,9 +2,9 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen, within } from '@testing-library/react';
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { CARD_SUIT_META } from '../../../shared/types';
+import { CARD_SUIT_META } from '../game/constants';
 import { entityFactories } from '../../../test_utils/facroties';
-import { camelCaseToSentenceCase } from './../../helpers/index';
+import { camelCaseToSentenceCase } from '../game/index';
 import Card, { IDENTITY_FIELDS } from './Card';
 
 describe('<Card />', () => {

@@ -1,4 +1,4 @@
-import { Entity } from '../../apollo_client/types';
+import { Entity } from '../../../apollo_client/types';
 
 export const deal = (cards: Entity[], players: number): Entity[] => {
   return Array(players)

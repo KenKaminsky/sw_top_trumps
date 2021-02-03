@@ -5,8 +5,8 @@ import faker from 'faker';
 import * as React from 'react';
 import { HistoryContext } from '../../App';
 import { mockResponse, renderWithMocks } from '../../test_utils/helpers';
-import { IHistory } from './../../App';
-import History, { NO_HISTORY_MESSAGE } from './History';
+import { IHistory } from '../../App';
+import History, { NO_HISTORY_MESSAGE } from '.';
 
 export const historyFactory = Factory.Sync.makeFactory<IHistory>({
   id: Factory.each(() => faker.random.uuid()),

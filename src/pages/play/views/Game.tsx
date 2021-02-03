@@ -1,13 +1,13 @@
 import React, { useCallback, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { HistoryContext } from '../../../App';
-import { RouterParams } from '../../../shared/types';
+import { RouterParams } from '../game/constants';
 import { Header } from '../../../shared/styles';
 import useDeck from '../hooks/useDeck';
 import useGameReducer, { PLAY, SET_MAX_PLAYERS } from '../hooks/useGameReducer';
 import { Board } from '../styles';
-import Card from './Card';
-import Controls from './Controls';
+import Card from '../components/Card';
+import Controls from '../components/Controls';
 
 export const IDENTITY_FIELDS = ['__typename', 'id', 'name'];
 

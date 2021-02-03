@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Header, Main } from '../../../shared/styles';
-import { CARD_SUIT_META } from '../../../shared/types';
+import { CARD_SUIT_META } from '../game/constants';
 import { SuitButton } from '../styles';
 
 export const ChooseSuitGrid = styled.div`

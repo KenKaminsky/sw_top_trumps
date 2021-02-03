@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { HistoryContext } from '../../App';
 import { Header } from '../../shared/styles';
-import { camelCaseToSentenceCase } from '../helpers/index';
+import { camelCaseToSentenceCase } from '../play/game/index';
 import { Table, TableContainer, Td, Th, THead, Tr } from './styles';
 
 export const NO_HISTORY_MESSAGE = 'No History Yet...';

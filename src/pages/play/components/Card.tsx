@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Entity } from '../../../apollo_client/types';
-import { RouterParams } from '../../../shared/types';
-import { camelCaseToSentenceCase } from '../../helpers/index';
+import { RouterParams } from '../game/constants';
+import { camelCaseToSentenceCase } from '../game/index';
 import { CardBody, CardBodyRow, CardContainer, CardHeader, Label, Span } from '../styles';
 
 export const IDENTITY_FIELDS = ['__typename', 'id', 'name'];

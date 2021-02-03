@@ -1,4 +1,4 @@
-import { STARSHIPS_CARD_IMGS, PEOPLE_CARD_IMGS } from '../styles/graphics';
+import { STARSHIPS_CARD_IMGS, PEOPLE_CARD_IMGS } from '../../../styles/graphics';
 
 export interface RouterParams {
   suit: string;

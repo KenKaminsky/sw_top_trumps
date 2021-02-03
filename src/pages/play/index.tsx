@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import { BASE_SUIT_PATH } from '../../shared/types';
-import ChooseSuit from './components/ChooseSuit';
-import Game from './components/Game';
+import { BASE_SUIT_PATH } from './game/constants';
+import ChooseSuit from './views/ChooseSuit';
+import Game from './views/Game';
 
 const Play: React.FC = () => {
   const match = useRouteMatch();

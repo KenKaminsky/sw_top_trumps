@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { StarWars } from '../styles/starWars';
-import { Container } from '../styles/styles';
-import { Header, Main } from './styles';
+import { StarWars } from '../../styles/starWars';
+import { Container } from '../../styles/styles';
+import { Header, Main } from '../../shared/styles';
 
 export const HOME_MESSAGE = 'STAR WARS';
 

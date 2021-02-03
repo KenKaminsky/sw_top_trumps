@@ -9,7 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import { SW_QUERIES } from './apollo_client/queries';
 import App from './App';
 import { PAGE_NOT_FOUND_MESSAGE } from './shared/PageNotFound';
-import { CARD_SUIT_META } from './shared/types';
+import { CARD_SUIT_META } from './pages/play/game/constants';
 import { defaultTheme } from './styles/theme';
 import { leftClick } from './test_utils/helpers';
 

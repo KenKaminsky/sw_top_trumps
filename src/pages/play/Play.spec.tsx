@@ -4,10 +4,10 @@ import userEvent from '@testing-library/user-event';
 import { GraphQLError } from 'graphql';
 import * as React from 'react';
 import { SW_QUERIES } from '../../apollo_client/queries';
-import { CARD_SUIT_META } from '../../shared/types';
+import { CARD_SUIT_META } from './game/constants';
 import { doTimes, mockResponse, renderWithMocks } from '../../test_utils/helpers';
-import { ERROR_MESSAGE, LOADING_MESSAGE } from './components/Game';
-import Play from './Play';
+import { ERROR_MESSAGE, LOADING_MESSAGE } from './views/Game';
+import Play from '.';
 
 describe.each(Object.entries(CARD_SUIT_META).map(([key, { label }]) => [key, label]))(
   'testing data loading statuses for (%s)',
