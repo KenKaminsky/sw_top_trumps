@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { HistoryContext } from '../../../App';
-import { RouterParams } from '../game/constants';
+import { RouterParams } from '../types';
 import { Header } from '../../../shared/styles';
 import useDeck from '../hooks/useDeck';
 import useGameReducer, { PLAY, SET_MAX_PLAYERS } from '../hooks/useGameReducer';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { StarWars } from '../../styles/starWars';
+import { StarWars } from './styles';
 import { Container } from '../../styles/styles';
 import { Header, Main } from '../../shared/styles';
 

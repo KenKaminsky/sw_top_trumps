@@ -7,10 +7,6 @@ export const SuitButton = styled(Container)<{ url: string }>`
   font-size: 6rem;
 `;
 
-export const CardContainer = styled(Container)`
-  border-radius: 10px;
-`;
-
 export const GameGrid = styled.div`
   padding: 1rem;
   display: grid;
@@ -27,6 +23,15 @@ export const Board = styled(Container)`
   overflow-y: auto;
 `;
 
+export const CardContainer = styled(Container)`
+  border-radius: 10px;
+`;
+
+export const CardHeader = styled(Container)<{ suit: string }>`
+  padding: 1rem;
+  background-image: url(${(props) => randomSuitImage(props.suit)});
+`;
+
 const randomSuitImage = (suit) => {
   if (!suit) return;
   const imgs = CARD_SUIT_META[suit].cardImgs;
@@ -34,10 +39,6 @@ const randomSuitImage = (suit) => {
   return imgs[randIndex];
 };
 
-export const CardHeader = styled(Container)<{ suit: string }>`
-  padding: 1rem;
-  background-image: url(${(props) => randomSuitImage(props.suit)});
-`;
 export const CardBody = styled(Container)`
   padding: 1rem;
   font-size: 1rem;

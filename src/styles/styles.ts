@@ -32,9 +32,7 @@ export const Container = styled(VariantContainer)`
 
   &.active,
   &:hover {
-    /* background: ${(props) => props.theme?.palette?.light?.main}; */
     color: ${(props) => props.theme?.palette?.primary?.main};
-    /* opacity: 0.75; */
   }
 `;
 
