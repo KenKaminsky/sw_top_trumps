@@ -65,35 +65,35 @@ export const secondaryTheme: Theme = {
   background: '#0E0C0F',
   palette: {
     dark: {
-      main: '#726a95',
+      main: '#52565e',
       contrastText: '#ffffff',
     },
     light: {
-      main: '#726a95',
+      main: '#caccd1',
       contrastText: '#ffffff',
     },
     primary: {
-      main: '#726a95',
+      main: '#0a8ea0',
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#709fb0',
+      main: '#30c39e',
       contrastText: '#ffffff',
     },
     success: {
-      main: '#709fb0',
+      main: '#30c39e',
       contrastText: '#ffffff',
     },
     info: {
-      main: '#709fb0',
+      main: '#ffc845',
       contrastText: '#ffffff',
     },
     warning: {
-      main: '#709fb0',
+      main: '#f48924',
       contrastText: '#ffffff',
     },
     danger: {
-      main: '#709fb0',
+      main: '#f85a40',
       contrastText: '#ffffff',
     },
   },
