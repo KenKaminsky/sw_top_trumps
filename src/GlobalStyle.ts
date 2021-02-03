@@ -1,8 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
-  @import url('<https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap>');
-  
+  /* @import url('<https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap>'); */
+  @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
   * {
     margin: 0;
     padding: 0;
@@ -31,16 +32,14 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
 
+  a:visited {color: ${(props) => 'white'}}
+
   ul {
     list-style: none;
   }
 
   button {
     cursor: pointer;
-  }
-
-  .App {
-    height: 100%;
   }
 
   /* Chrome, Safari, Edge, Opera */

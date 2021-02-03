@@ -1,15 +1,17 @@
 import { ApolloProvider } from '@apollo/client';
 import React, { useState } from 'react';
+import { ThemeProvider } from 'styled-components';
 import { client } from './apollo_client/client';
-import { Winner } from './componenets/Board/Game';
 import { GlobalStyles } from './GlobalStyle';
 import Layout from './shared/Layout';
-
+import { HighContainer } from './shared/styles';
+import { defaultTheme, secondaryTheme } from './styles/theme';
 export interface IHistory {
   id: string;
   compField: string;
-  winner: Winner;
-  date: Date;
+  winner: number;
+  winningValue: number;
+  time: string;
 }
 interface IHistoryContext {
   history: IHistory[];
@@ -22,18 +24,26 @@ export const HistoryContext = React.createContext<IHistoryContext>({
 });
 
 const App: React.FC = () => {
+  const [theme, setTheme] = React.useState(defaultTheme);
+
+  const toggleTheme = () => {
+    setTheme((theme) => (theme === defaultTheme ? secondaryTheme : defaultTheme));
+  };
+
   const [history, setHistory] = useState<IHistory[]>([]);
   const value = { history, setHistory };
 
   return (
-    <div className='App'>
-      <GlobalStyles />
+    <HighContainer className='App'>
       <ApolloProvider client={client}>
-        <HistoryContext.Provider value={value}>
-          <Layout />
-        </HistoryContext.Provider>
+        <ThemeProvider theme={theme}>
+          <HistoryContext.Provider value={value}>
+            <GlobalStyles />
+            <Layout toggleTheme={toggleTheme} />
+          </HistoryContext.Provider>
+        </ThemeProvider>
       </ApolloProvider>
-    </div>
+    </HighContainer>
   );
 };
 

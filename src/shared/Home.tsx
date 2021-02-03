@@ -1,10 +1,50 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { StarWars } from '../styles/starWars';
+import { Container } from '../styles/styles';
+import { Header, Main } from './styles';
 
 export const HOME_MESSAGE = 'STAR WARS';
 
 const Home: React.FC = () => {
-  return <Link to={'/'}>{HOME_MESSAGE}</Link>;
+  return (
+    <>
+      <Header>
+        <h3>{HOME_MESSAGE}</h3>
+      </Header>
+      <Main>
+        <Container as={Link} to={'/boards'}>
+          <StarWars>
+            <div className='fade'></div>
+            <section className='star-wars'>
+              <div className='crawl'>
+                <div className='title'>
+                  <p>Episode IV</p>
+                  <h1>A New Hope</h1>
+                </div>
+
+                <p>
+                  It is a period of civil war. Rebel spaceships, striking from a hidden base, have
+                  won their first victory against the evil Galactic Empire.
+                </p>
+                <p>
+                  During the battle, Rebel spies managed to steal secret plans to the Empire’s
+                  ultimate weapon, the DEATH STAR, an armored space station with enough power to
+                  destroy an entire planet.
+                </p>
+                <p>
+                  Pursued by the Empire’s sinister agents, Princess Leia races home aboard her
+                  starship, custodian of the stolen plans that can save her people and restore
+                  freedom to the galaxy…
+                </p>
+              </div>
+            </section>
+            {HOME_MESSAGE}
+          </StarWars>
+        </Container>
+      </Main>
+    </>
+  );
 };
 
 export default Home;

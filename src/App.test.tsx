@@ -1,68 +1,64 @@
 import { MockedProvider } from '@apollo/client/testing';
 import '@testing-library/jest-dom/extend-expect';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import React from 'react';
 import { Router } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { SW_QUERIES } from './apollo_client/queries';
 import App from './App';
-import { SUITS } from './componenets/Board/Board';
-import { PLEASE_SELECT_MESSAGE } from './componenets/Board/ChooseSuit';
-import { NO_HISTORY_MESSAGE } from './componenets/History/History';
-import { HOME_MESSAGE } from './shared/Home';
 import { PAGE_NOT_FOUND_MESSAGE } from './shared/PageNotFound';
+import { CARD_SUIT_META } from './shared/types';
+import { defaultTheme } from './styles/theme';
+import { leftClick } from './test_utils/helpers';
 
-it('render app level routs as expected', () => {
-  const history = createMemoryHistory();
-  const mocks = [
-    {
-      request: {
-        query: SUITS.starships.query,
+let history = createMemoryHistory();
+
+describe('render app level routs as expected', () => {
+  beforeEach(() => {
+    history = createMemoryHistory();
+    const mocks = [
+      {
+        request: {
+          query: SW_QUERIES.starships.query,
+        },
+        result: {
+          data: {},
+        },
       },
-      result: {
-        data: {},
-      },
+    ];
+    render(
+      <Router history={history}>
+        <MockedProvider mocks={mocks} addTypename={true}>
+          <ThemeProvider theme={defaultTheme}>
+            <App />
+          </ThemeProvider>
+        </MockedProvider>
+      </Router>,
+    );
+  });
+
+  it('should render home page on root route', () => {
+    expect(screen.getAllByText('STAR WARS').length).toEqual(2);
+  });
+
+  it.each(Object.entries(CARD_SUIT_META).map(([_key, { label, path }]) => [label, path]))(
+    'should render board option for (%i) on navigation to Play',
+    (label) => {
+      userEvent.click(screen.getByText(/Play/i), leftClick);
+      expect(within(screen.getByTestId('main')).getByText(label)).toBeInTheDocument();
     },
-  ];
-  render(
-    <Router history={history}>
-      <MockedProvider mocks={mocks} addTypename={true}>
-        <App />
-      </MockedProvider>
-    </Router>,
   );
 
-  expect(screen.getByText(HOME_MESSAGE)).toBeInTheDocument();
+  it('should render History page on history route', () => {
+    const histNav = within(screen.getByTestId('nav')).getByText(/History/i);
+    userEvent.click(histNav, leftClick);
+    expect(within(screen.getByTestId('main')).getAllByText(/History/i).length).toEqual(2);
+  });
 
-  const leftClick = { button: 0 };
-
-  userEvent.click(screen.getByText(/Loby/i), leftClick);
-  expect(screen.getByText(PLEASE_SELECT_MESSAGE)).toBeInTheDocument();
-
-  userEvent.click(screen.getByText(/History/i), leftClick);
-  expect(screen.getByText(NO_HISTORY_MESSAGE)).toBeInTheDocument();
-});
-
-it('loads 404 page on a bad route', () => {
-  const history = createMemoryHistory();
-  history.push('/some/bad/route');
-  const mocks = [
-    {
-      request: {
-        query: SUITS.starships.query,
-      },
-      result: {
-        data: {},
-      },
-    },
-  ];
-  render(
-    <Router history={history}>
-      <MockedProvider mocks={mocks} addTypename={true}>
-        <App />
-      </MockedProvider>
-    </Router>,
-  );
-
-  expect(screen.getByText(PAGE_NOT_FOUND_MESSAGE)).toBeInTheDocument();
+  it('loads 404 page on a bad route', () => {
+    history.push('/some/bad/route');
+    expect(screen.getByText(PAGE_NOT_FOUND_MESSAGE)).toBeInTheDocument();
+  });
 });
