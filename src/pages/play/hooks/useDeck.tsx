@@ -1,20 +1,19 @@
 import { ApolloError, useQuery } from '@apollo/client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SW_QUERIES } from '../../../apollo_client/queries';
-import { Entity } from '../../../apollo_client/types';
 
-type UseDeck = (
+type UseDeck = <T>(
   suite: string,
 ) => {
   loading: boolean;
-  deck: Entity[];
+  deck: T[];
   errors: { apollo: ApolloError; game: Error };
-  compField: string;
+  compField: keyof T;
 };
 
 const useDeck: UseDeck = (suit: string) => {
-  const [deck, setDeck] = useState<Entity[]>(null);
-  const [compField, setCompField] = useState<string>();
+  const [deck, setDeck] = useState(null);
+  const [compField, setCompField] = useState();
   const [errors, setErrors] = useState({ apollo: null, game: null });
   const { loading, data, error: apolloError } = useQuery(SW_QUERIES[suit].query);
 

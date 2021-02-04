@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { Entity } from '../../../apollo_client/types';
+import { IHistory } from '../../../App';
 import { RowContainer } from '../../../shared/styles';
 import { Container } from '../../../styles/styles';
 import { Action, ADD_PLAYER, REMOVE_PLAYER, State } from '../hooks/useGameReducer';
 import { ControlsContainer, Label, Span } from '../styles';
-import { IHistory } from '../../../App';
 
 interface ControlsProps {
   play: () => void;
   state: Partial<State>;
-  dispatch: React.Dispatch<Action>;
+  dispatch: React.Dispatch<Action<Entity>>;
 }
 
 const Controls: React.FC<ControlsProps> = ({
@@ -26,7 +27,7 @@ const Controls: React.FC<ControlsProps> = ({
   return (
     <Container>
       <ControlsContainer>
-        {currGame ? `Winner: ${currGame.winner} with ${currGame.winningValue}` : ''}
+        {currGame ? `Winner: ${currGame.winner} | Value: ${currGame.winningValue}` : ''}
       </ControlsContainer>
       <ControlsContainer variant={'success'} as={'button'} onClick={() => play()}>
         Play Again

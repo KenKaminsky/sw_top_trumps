@@ -17,11 +17,11 @@ export const REMOVE_PLAYER = 'REMOVE_PLAYER';
 export const SET_MAX_PLAYERS = 'SET_MAX_PLAYERS';
 export const PLAY = 'PLAY';
 
-export type Action =
+export type Action<T> =
   | { type: typeof ADD_PLAYER }
   | { type: typeof REMOVE_PLAYER }
   | { type: typeof SET_MAX_PLAYERS; payload: number }
-  | { type: typeof PLAY; payload: { deck: Entity[]; compField: string } };
+  | { type: typeof PLAY; payload: { deck: T[]; compField: keyof T } };
 
 export const initState: State = {
   hands: [],
@@ -30,7 +30,7 @@ export const initState: State = {
   history: [],
 };
 
-function reducer(state: State, action: Action): State {
+function reducer(state: State, action: Action<Entity>): State {
   switch (action.type) {
     case ADD_PLAYER:
       return { ...state, players: Math.min(state.players + 1, state.maxPlayers) };
@@ -61,7 +61,7 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-const useGameReducer = (): [State, React.Dispatch<Action>] => {
+const useGameReducer = (): [State, React.Dispatch<Action<Entity>>] => {
   return useReducer(reducer, initState);
 };
 

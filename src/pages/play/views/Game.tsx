@@ -1,13 +1,14 @@
 import React, { useCallback, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Entity } from '../../../apollo_client/types';
 import { HistoryContext } from '../../../App';
-import { RouterParams } from '../types';
 import { Header } from '../../../shared/styles';
+import Card from '../components/Card';
+import Controls from '../components/Controls';
 import useDeck from '../hooks/useDeck';
 import useGameReducer, { PLAY, SET_MAX_PLAYERS } from '../hooks/useGameReducer';
 import { Board } from '../styles';
-import Card from '../components/Card';
-import Controls from '../components/Controls';
+import { RouterParams } from '../types';
 
 export const IDENTITY_FIELDS = ['__typename', 'id', 'name'];
 
@@ -20,7 +21,7 @@ const Game: React.FC = () => {
 
   const { setHistory } = useContext(HistoryContext);
 
-  const { loading, errors, deck, compField } = useDeck(suit);
+  const { loading, errors, deck, compField } = useDeck<Entity>(suit);
 
   const [{ hands, ...state }, dispatch] = useGameReducer();
 
