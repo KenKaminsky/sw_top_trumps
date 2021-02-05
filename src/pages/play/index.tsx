@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import { BASE_SUIT_PATH } from './game/constants';
 import ChooseSuit from './views/ChooseSuit';
 import Game from './views/Game';
 
@@ -9,10 +8,10 @@ const Play: React.FC = () => {
   return (
     <>
       <Switch>
-        <Route path={BASE_SUIT_PATH + '/:suit'}>
+        <Route path={`${match.url}/:suit`}>
           <Game />
         </Route>
-        <Route path={BASE_SUIT_PATH}>
+        <Route path={match.url}>
           <ChooseSuit />
         </Route>
       </Switch>

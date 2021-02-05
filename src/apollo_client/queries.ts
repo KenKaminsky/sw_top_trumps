@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { IQueries, Person, Starship } from './types';
 
 const GET_STARSHIPS = gql`
   query starships {
@@ -34,12 +35,12 @@ const GET_PEOPLE = gql`
 export const SW_QUERIES = {
   starships: {
     query: GET_STARSHIPS,
-    selector: (data) => data.allStarships.starships,
+    selector: (data: IQueries): Starship[] => data.allStarships.starships,
     compField: 'hyperdriveRating',
   },
   people: {
     query: GET_PEOPLE,
-    selector: (data) => data.allPeople.people,
+    selector: (data: IQueries): Person[] => data.allPeople.people,
     compField: 'height',
   },
 };

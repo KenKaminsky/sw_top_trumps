@@ -32,7 +32,7 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
 
-  a:visited {color: ${(props) => 'white'}}
+  a:visited {color: white}
 
   ul {
     list-style: none;

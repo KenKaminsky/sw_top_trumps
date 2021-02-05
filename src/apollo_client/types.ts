@@ -18,3 +18,14 @@ export interface Person extends Base {
 }
 
 export type Entity = Starship | Person;
+
+export interface IQueries {
+  allPeople: {
+    totalCount: number;
+    people: Person[];
+  };
+  allStarships: {
+    totalCount: number;
+    starships: Starship[];
+  };
+}
